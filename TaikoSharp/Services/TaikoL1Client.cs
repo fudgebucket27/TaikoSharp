@@ -23,7 +23,14 @@ namespace TaikoSharp.Services
             return Conversions.ToLongFromHexString(rpcResponse);
         }
 
-        public async Task<bool> GetSyncingAsync()
+        public async Task<long> GetLatestBlockNumber()
+        {
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_blockNumber");
+            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            return Conversions.ToLongFromHexString(rpcResponse);
+        }
+
+        public async Task<bool> GetSyncingStatusAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_syncing");
             bool rpcResponse = await RpcClient.SendRequestAsync<bool>(rpcRequest);
