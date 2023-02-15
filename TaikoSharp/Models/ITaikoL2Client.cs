@@ -7,6 +7,6 @@ namespace TaikoSharp.Models
 {
     public interface ITaikoL2Client
     {
-        Task<int> GetChainIDAsync();
+        Task<int> GetChainIdAsync();
     }
 }

@@ -16,7 +16,7 @@ namespace TaikoSharp.Services
         {
             RpcClient = new RpcClient(new Uri(TaikoConstants.L1RPCUrl));
         }
-        public async Task<int> GetChainIDAsync()
+        public async Task<int> GetChainIdAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
             string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
