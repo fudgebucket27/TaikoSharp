@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TaikoSharp
+namespace TaikoSharp.Helpers
 {
     public static class Constants
     {
