@@ -15,7 +15,7 @@ namespace TaikoSharp.Services
         readonly RpcClient RpcClient;  
         public TaikoL2Client()
         {
-            RpcClient = new RpcClient(new Uri(Constants.L2RPCUrl));
+            RpcClient = new RpcClient(new Uri(TaikoConstants.L2RPCUrl));
         }
 
         public async Task<int> GetChainIDAsync()

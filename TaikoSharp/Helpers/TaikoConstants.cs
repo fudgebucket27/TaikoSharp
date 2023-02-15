@@ -2,7 +2,7 @@
 
 namespace TaikoSharp.Helpers
 {
-    public static class Constants
+    public static class TaikoConstants
     {
         //L1
         public const string L1ContractAddress = "0x7B3AF414448ba906f02a1CA307C56c4ADFF27ce7";

@@ -1,6 +1,10 @@
-﻿using TaikoSharp.Services;
+﻿using Nethereum.Signer;
+using TaikoSharp.Services;
+TaikoL1Client taikoL1Client = new TaikoL1Client();
 TaikoL2Client taikoL2Client = new TaikoL2Client();
-var chainID = await taikoL2Client.GetChainIDAsync();
-Console.WriteLine($"Taiko L2 Chain ID: {chainID}");
+var taikoL1ChainID = await taikoL1Client.GetChainIDAsync();
+var taikoL2ChainID = await taikoL2Client.GetChainIDAsync();
+Console.WriteLine($"Taiko L2 Chain ID: {taikoL1ChainID}");
+Console.WriteLine($"Taiko L2 Chain ID: {taikoL2ChainID}");
 Console.WriteLine("Enter to exit:");
 Console.ReadLine();
