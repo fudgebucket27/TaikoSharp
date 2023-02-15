@@ -12,9 +12,9 @@ namespace TaikoSharp.Services
     public class TaikoL1Client : ITaikoL1Client
     {
         readonly RpcClient RpcClient;
-        public TaikoL1Client()
+        public TaikoL1Client(string rpcURL)
         {
-            RpcClient = new RpcClient(new Uri(TaikoConstants.L1RPCUrl));
+            RpcClient = new RpcClient(new Uri(rpcURL));
         }
         public async Task<long> GetChainIdAsync()
         {

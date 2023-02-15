@@ -1,7 +1,7 @@
 ﻿using Nethereum.Signer;
 using TaikoSharp.Services;
-TaikoL1Client taikoL1Client = new TaikoL1Client();
-TaikoL2Client taikoL2Client = new TaikoL2Client();
+TaikoL1Client taikoL1Client = new TaikoL1Client("https://mainnet.infura.io/v3/53173af3389645d18c3bcac2ee9a751c");
+TaikoL2Client taikoL2Client = new TaikoL2Client("https://mainnet.infura.io/v3/53173af3389645d18c3bcac2ee9a751c");
 var taikoL1ChainID = await taikoL1Client.GetChainIdAsync();
 var taikoL2ChainID = await taikoL2Client.GetChainIdAsync();
 Console.WriteLine($"Taiko L1 Chain ID: {taikoL1ChainID}");

@@ -12,10 +12,10 @@ namespace TaikoSharp.Services
 {
     public class TaikoL2Client : ITaikoL2Client
     {
-        readonly RpcClient RpcClient;  
-        public TaikoL2Client()
+        readonly RpcClient RpcClient;
+        public TaikoL2Client(string rpcURL)
         {
-            RpcClient = new RpcClient(new Uri(TaikoConstants.L2RPCUrl));
+            RpcClient = new RpcClient(new Uri(rpcURL));
         }
 
         public async Task<long> GetChainIdAsync()
