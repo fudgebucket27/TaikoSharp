@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikoSharp", "TaikoSharp\TaikoSharp.csproj", "{767C875F-D1FB-49EF-ACAD-FB68E53A2AC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaikoSharp", "TaikoSharp\TaikoSharp.csproj", "{767C875F-D1FB-49EF-ACAD-FB68E53A2AC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaikoConsole", "TaikoConsole\TaikoConsole.csproj", "{8DF87447-FC9F-46BA-9B8F-46F5059BCC59}"
+	ProjectSection(ProjectDependencies) = postProject
+		{767C875F-D1FB-49EF-ACAD-FB68E53A2AC8} = {767C875F-D1FB-49EF-ACAD-FB68E53A2AC8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{767C875F-D1FB-49EF-ACAD-FB68E53A2AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{767C875F-D1FB-49EF-ACAD-FB68E53A2AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{767C875F-D1FB-49EF-ACAD-FB68E53A2AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF87447-FC9F-46BA-9B8F-46F5059BCC59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF87447-FC9F-46BA-9B8F-46F5059BCC59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF87447-FC9F-46BA-9B8F-46F5059BCC59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF87447-FC9F-46BA-9B8F-46F5059BCC59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
