@@ -18,11 +18,11 @@ namespace TaikoSharp.Services
             RpcClient = new RpcClient(new Uri(TaikoConstants.L2RPCUrl));
         }
 
-        public async Task<int> GetChainIdAsync()
+        public async Task<long> GetChainIdAsync()
         {
            RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
-           return int.Parse(rpcResponse.Substring(2), System.Globalization.NumberStyles.HexNumber);
+           return Conversions.ToLongFromHexString(rpcResponse);
         }
     }
 }
