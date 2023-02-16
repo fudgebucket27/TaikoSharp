@@ -13,29 +13,101 @@ namespace TaikoSharp.Services
 {
     public class TaikoL2Client : ITaikoL2Client
     {
-        readonly RpcClient RpcClient;
+        readonly Web3 Web3Client;
         public TaikoL2Client(string rpcURL)
         {
-            RpcClient = new RpcClient(new Uri(rpcURL));
+            Web3Client = new Web3(rpcURL);
+        }
+        public async Task<string> GetBalance(string address, string blockHash)
+        {
+            object[] parameters = new object[] { address, blockHash };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBalance", parameters);
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
+        public async Task<BlockWithoutTransactionDetails> GetBlockByHashWithoutTransactionDetailsAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash, false };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByHash", parameters);
+            JObject rpcResponse = await Web3Client.Client.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithoutTransactionDetails>();
+        }
+
+        public async Task<BlockWithTransactionDetails> GetBlockByHashWithTransactionDetailsAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash, true };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByHash", parameters);
+            JObject rpcResponse = await Web3Client.Client.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithTransactionDetails>();
+        }
+
+        public async Task<BlockWithoutTransactionDetails> GetBlockByNumberWithoutTransactionDetailsAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { blockNumber, false };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByNumber", parameters);
+            JObject rpcResponse = await Web3Client.Client.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithoutTransactionDetails>();
+        }
+
+        public async Task<BlockWithTransactionDetails> GetBlockByNumberWithTransactionDetailsAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { blockNumber, true };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByNumber", parameters);
+            JObject rpcResponse = await Web3Client.Client.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithTransactionDetails>();
+        }
+
+        public async Task<string> GetBlockTransactionCountByHashAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockTransactionCountByHash", parameters);
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
+        public async Task<string> GetBlockTransactionCountByNumberAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { blockNumber };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockTransactionCountByNumber", parameters);
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
         }
 
         public async Task<string> GetChainIdAsync()
         {
-           RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
-           string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
-           return rpcResponse;
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
         }
+
         public async Task<string> GetLatestBlockNumberAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_blockNumber");
-            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
             return rpcResponse;
         }
 
         public async Task<bool> GetSyncingStatusAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_syncing");
-            bool rpcResponse = await RpcClient.SendRequestAsync<bool>(rpcRequest);
+            bool rpcResponse = await Web3Client.Client.SendRequestAsync<bool>(rpcRequest);
+            return rpcResponse;
+        }
+
+        public async Task<string> GetUncleCountByHashAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getUncleCountByBlockHash", parameters);
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
+        public async Task<string> GetUncleCountByNumberAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { blockNumber };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getUncleCountByBlockNumber", parameters);
+            string rpcResponse = await Web3Client.Client.SendRequestAsync<string>(rpcRequest);
             return rpcResponse;
         }
     }
