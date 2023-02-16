@@ -1,4 +1,5 @@
-﻿using Nethereum.JsonRpc.Client;
+﻿using Nethereum.Geth;
+using Nethereum.JsonRpc.Client;
 using Nethereum.Signer;
 using Nethereum.Web3;
 using Newtonsoft.Json.Linq;
@@ -13,10 +14,10 @@ namespace TaikoSharp.Services
 {
     public class TaikoL2Client : ITaikoL2Client
     {
-        readonly Web3 Web3Client;
+        readonly Web3Geth Web3Client;
         public TaikoL2Client(string rpcURL)
         {
-            Web3Client = new Web3(rpcURL);
+            Web3Client = new Web3Geth(rpcURL);
         }
         public async Task<string> GetBalance(string address, string blockHash)
         {

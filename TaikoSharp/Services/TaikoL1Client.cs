@@ -9,15 +9,16 @@ using TaikoSharp.Helpers;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using Nethereum.Web3;
+using Nethereum.Geth;
 
 namespace TaikoSharp.Services
 {
     public class TaikoL1Client : ITaikoL1Client
     {
-        readonly Web3 Web3Client;
+        readonly Web3Geth Web3Client;
         public TaikoL1Client(string rpcURL)
         {
-            Web3Client = new Web3(rpcURL);
+            Web3Client = new Web3Geth(rpcURL);
         }
 
         public async Task<string> GetBalance(string address, string blockHash)
