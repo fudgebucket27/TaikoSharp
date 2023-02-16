@@ -1,7 +1,7 @@
-﻿using Nethereum.Signer;
-using TaikoSharp.Services;
+﻿using TaikoSharp.Services;
 TaikoL1Client taikoL1Client = new TaikoL1Client("https://mainnet.infura.io/v3/53173af3389645d18c3bcac2ee9a751c");
 TaikoL2Client taikoL2Client = new TaikoL2Client("https://mainnet.infura.io/v3/53173af3389645d18c3bcac2ee9a751c");
+
 var taikoL1ChainID = await taikoL1Client.GetChainIdAsync();
 Console.WriteLine($"Chain ID: {taikoL1ChainID}");
 
@@ -23,6 +23,11 @@ Console.WriteLine($"Block By Hash With Details 1st Transaction Gas Price:{taikoL
 var taikoL1BlockHashWithoutDetails = await taikoL1Client.GetBlockByHashWithoutTransactionDetailsAsync(taikoL1BlockWithDetails.hash);
 Console.WriteLine($"Block By Hash Without Details 1st Transaction Hash:{taikoL1BlockHashWithoutDetails.transactions[0]}");
 
+var taikoL2TransactionCountByHash = await taikoL1Client.GetBlockTransactionCountByHashAsync(taikoL1BlockWithDetails.hash);
+Console.WriteLine($"Block Transaction Count By Hash:{taikoL2TransactionCountByHash}");
+
+var taikoL2TransactionCountByNumber = await taikoL1Client.GetBlockTransactionCountByNumberAsync(taikoL1BlockNumber);
+Console.WriteLine($"Block Transaction Count By Number:{taikoL2TransactionCountByHash}");
 
 Console.WriteLine("Enter to exit:");
 Console.ReadLine();

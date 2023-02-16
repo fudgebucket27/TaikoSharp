@@ -51,6 +51,22 @@ namespace TaikoSharp.Services
             return rpcResponse.ToObject<BlockWithTransactionDetails>();
         }
 
+        public async Task<string> GetBlockTransactionCountByHashAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash};
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockTransactionCountByHash", parameters);
+            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
+        public async Task<string> GetBlockTransactionCountByNumberAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { blockNumber};
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockTransactionCountByNumber", parameters);
+            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
         public async Task<string> GetChainIdAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");

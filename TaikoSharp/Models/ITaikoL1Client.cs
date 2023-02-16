@@ -15,5 +15,8 @@ namespace TaikoSharp.Models
 
         Task<BlockWithTransactionDetails> GetBlockByHashWithTransactionDetailsAsync(string blockHash);
         Task<BlockWithoutTransactionDetails> GetBlockByHashWithoutTransactionDetailsAsync(string blockHash);
+
+        Task<string> GetBlockTransactionCountByHashAsync(string blockHash);
+        Task<string> GetBlockTransactionCountByNumberAsync(string blockNumber);
     }
 }
