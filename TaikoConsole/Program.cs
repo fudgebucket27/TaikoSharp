@@ -23,11 +23,17 @@ Console.WriteLine($"Block By Hash With Details 1st Transaction Gas Price:{taikoL
 var taikoL1BlockHashWithoutDetails = await taikoL1Client.GetBlockByHashWithoutTransactionDetailsAsync(taikoL1BlockWithDetails.hash);
 Console.WriteLine($"Block By Hash Without Details 1st Transaction Hash:{taikoL1BlockHashWithoutDetails.transactions[0]}");
 
-var taikoL2TransactionCountByHash = await taikoL1Client.GetBlockTransactionCountByHashAsync(taikoL1BlockWithDetails.hash);
-Console.WriteLine($"Block Transaction Count By Hash:{taikoL2TransactionCountByHash}");
+var taikoL1TransactionCountByHash = await taikoL1Client.GetBlockTransactionCountByHashAsync(taikoL1BlockWithDetails.hash);
+Console.WriteLine($"Block Transaction Count By Hash:{taikoL1TransactionCountByHash}");
 
-var taikoL2TransactionCountByNumber = await taikoL1Client.GetBlockTransactionCountByNumberAsync(taikoL1BlockNumber);
-Console.WriteLine($"Block Transaction Count By Number:{taikoL2TransactionCountByNumber}");
+var taikoL1TransactionCountByNumber = await taikoL1Client.GetBlockTransactionCountByNumberAsync(taikoL1BlockNumber);
+Console.WriteLine($"Block Transaction Count By Number:{taikoL1TransactionCountByNumber}");
+
+var taikoL1UncleCountByHash = await taikoL1Client.GetUncleCountByHashAsync(taikoL1BlockWithDetails.hash);
+Console.WriteLine($"Block Uncle Count By Hash:{taikoL1UncleCountByHash}");
+
+var taikoL1UncleCountByNumber = await taikoL1Client.GetUncleCountByNumberAsync(taikoL1BlockNumber);
+Console.WriteLine($"Block Uncle Count By Number:{taikoL1UncleCountByNumber}");
 
 Console.WriteLine("Enter to exit:");
 Console.ReadLine();

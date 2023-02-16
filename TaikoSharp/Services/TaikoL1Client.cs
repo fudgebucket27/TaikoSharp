@@ -87,5 +87,21 @@ namespace TaikoSharp.Services
             bool rpcResponse = await RpcClient.SendRequestAsync<bool>(rpcRequest);
             return rpcResponse;
         }
+
+        public async Task<string> GetUncleCountByHashAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getUncleCountByBlockHash", parameters);
+            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
+        public async Task<string> GetUncleCountByNumberAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { blockNumber };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getUncleCountByBlockNumber", parameters);
+            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
     }
 }
