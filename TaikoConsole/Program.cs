@@ -27,7 +27,7 @@ var taikoL2TransactionCountByHash = await taikoL1Client.GetBlockTransactionCount
 Console.WriteLine($"Block Transaction Count By Hash:{taikoL2TransactionCountByHash}");
 
 var taikoL2TransactionCountByNumber = await taikoL1Client.GetBlockTransactionCountByNumberAsync(taikoL1BlockNumber);
-Console.WriteLine($"Block Transaction Count By Number:{taikoL2TransactionCountByHash}");
+Console.WriteLine($"Block Transaction Count By Number:{taikoL2TransactionCountByNumber}");
 
 Console.WriteLine("Enter to exit:");
 Console.ReadLine();
