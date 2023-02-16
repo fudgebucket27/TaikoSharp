@@ -9,6 +9,6 @@ namespace TaikoSharp.Models
     {
         Task<long> GetChainIdAsync();
         Task<bool> GetSyncingStatusAsync();
-        Task<long> GetLatestBlockNumber();
+        Task<long> GetLatestBlockNumberAsync();
     }
 }

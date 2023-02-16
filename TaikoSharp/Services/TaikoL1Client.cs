@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TaikoSharp.Models;
 using TaikoSharp.Helpers;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace TaikoSharp.Services
 {
@@ -16,6 +18,23 @@ namespace TaikoSharp.Services
         {
             RpcClient = new RpcClient(new Uri(rpcURL));
         }
+
+        public async Task<BlockWithoutTransactionDetails> GetBlockByNumberWithoutTransactionDetailsAsync(string blockNumber)
+        {
+            object[] parameters = new object[] { Conversions.ToHexFromLong(long.Parse(blockNumber)), false };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByNumber", parameters);
+            JObject rpcResponse = await RpcClient.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithoutTransactionDetails>();
+        }
+
+        public async Task<BlockWithTransactionDetails> GetBlockByNumberWithTransactionDetailsAsync(string blockNumber) 
+        {
+            object[] parameters = new object[] { Conversions.ToHexFromLong(long.Parse(blockNumber)), true };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByNumber", parameters);
+            JObject rpcResponse = await RpcClient.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithTransactionDetails>();
+        }
+
         public async Task<long> GetChainIdAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
@@ -23,7 +42,7 @@ namespace TaikoSharp.Services
             return Conversions.ToLongFromHexString(rpcResponse);
         }
 
-        public async Task<long> GetLatestBlockNumber()
+        public async Task<long> GetLatestBlockNumberAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_blockNumber");
             string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);

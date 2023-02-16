@@ -1,6 +1,7 @@
 ﻿using Nethereum.JsonRpc.Client;
 using Nethereum.Signer;
 using Nethereum.Web3;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +25,7 @@ namespace TaikoSharp.Services
            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
            return Conversions.ToLongFromHexString(rpcResponse);
         }
-        public async Task<long> GetLatestBlockNumber()
+        public async Task<long> GetLatestBlockNumberAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_blockNumber");
             string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);

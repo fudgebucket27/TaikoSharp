@@ -10,5 +10,10 @@ namespace TaikoSharp.Helpers
         {
             return long.Parse(number.Substring(2), System.Globalization.NumberStyles.HexNumber);
         }
+
+        public static string ToHexFromLong(long number)
+        {
+            return "0x" + number.ToString("X");
+        }
     }
 }
