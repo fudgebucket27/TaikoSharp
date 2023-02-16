@@ -19,5 +19,6 @@ namespace TaikoSharp.Models
         Task<string> GetBlockTransactionCountByNumberAsync(string blockNumber);
         Task<string> GetUncleCountByHashAsync(string blockHash);
         Task<string> GetUncleCountByNumberAsync(string blockNumber);
+        Task<string> GetBalance(string address, string blockHash);
     }
 }

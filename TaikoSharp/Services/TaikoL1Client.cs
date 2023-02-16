@@ -19,6 +19,14 @@ namespace TaikoSharp.Services
             RpcClient = new RpcClient(new Uri(rpcURL));
         }
 
+        public async Task<string> GetBalance(string address, string blockHash)
+        {
+            object[] parameters = new object[] { address, blockHash};
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBalance", parameters);
+            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
+            return rpcResponse;
+        }
+
         public async Task<BlockWithoutTransactionDetails> GetBlockByHashWithoutTransactionDetailsAsync(string blockHash)
         {
             object[] parameters = new object[] { blockHash, false };

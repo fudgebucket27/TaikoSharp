@@ -35,5 +35,8 @@ Console.WriteLine($"Block Uncle Count By Hash:{taikoL1UncleCountByHash}");
 var taikoL1UncleCountByNumber = await taikoL1Client.GetUncleCountByNumberAsync(taikoL1BlockNumber);
 Console.WriteLine($"Block Uncle Count By Number:{taikoL1UncleCountByNumber}");
 
+var taikoL1Balance = await taikoL1Client.GetBalance("0x72760a5CE15158Da78b33968b423a52576178f91", "latest");
+Console.WriteLine($"Balance: {taikoL1Balance}");
+
 Console.WriteLine("Enter to exit:");
 Console.ReadLine();
