@@ -21,7 +21,7 @@ namespace TaikoSharp.Services
 
         public async Task<BlockWithoutTransactionDetails> GetBlockByNumberWithoutTransactionDetailsAsync(string blockNumber)
         {
-            object[] parameters = new object[] { Conversions.ToHexFromLong(long.Parse(blockNumber)), false };
+            object[] parameters = new object[] { blockNumber, false };
             RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByNumber", parameters);
             JObject rpcResponse = await RpcClient.SendRequestAsync<JObject>(rpcRequest);
             return rpcResponse.ToObject<BlockWithoutTransactionDetails>();
@@ -29,24 +29,24 @@ namespace TaikoSharp.Services
 
         public async Task<BlockWithTransactionDetails> GetBlockByNumberWithTransactionDetailsAsync(string blockNumber) 
         {
-            object[] parameters = new object[] { Conversions.ToHexFromLong(long.Parse(blockNumber)), true };
+            object[] parameters = new object[] { blockNumber, true };
             RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByNumber", parameters);
             JObject rpcResponse = await RpcClient.SendRequestAsync<JObject>(rpcRequest);
             return rpcResponse.ToObject<BlockWithTransactionDetails>();
         }
 
-        public async Task<long> GetChainIdAsync()
+        public async Task<string> GetChainIdAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
             string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
-            return Conversions.ToLongFromHexString(rpcResponse);
+            return rpcResponse;
         }
 
-        public async Task<long> GetLatestBlockNumberAsync()
+        public async Task<string> GetLatestBlockNumberAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_blockNumber");
             string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
-            return Conversions.ToLongFromHexString(rpcResponse);
+            return rpcResponse;
         }
 
         public async Task<bool> GetSyncingStatusAsync()

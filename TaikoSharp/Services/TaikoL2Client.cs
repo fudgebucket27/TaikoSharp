@@ -19,17 +19,17 @@ namespace TaikoSharp.Services
             RpcClient = new RpcClient(new Uri(rpcURL));
         }
 
-        public async Task<long> GetChainIdAsync()
+        public async Task<string> GetChainIdAsync()
         {
            RpcRequest rpcRequest = new RpcRequest(0, "eth_chainId");
            string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
-           return Conversions.ToLongFromHexString(rpcResponse);
+           return rpcResponse;
         }
-        public async Task<long> GetLatestBlockNumberAsync()
+        public async Task<string> GetLatestBlockNumberAsync()
         {
             RpcRequest rpcRequest = new RpcRequest(0, "eth_blockNumber");
             string rpcResponse = await RpcClient.SendRequestAsync<string>(rpcRequest);
-            return Conversions.ToLongFromHexString(rpcResponse);
+            return rpcResponse;
         }
 
         public async Task<bool> GetSyncingStatusAsync()

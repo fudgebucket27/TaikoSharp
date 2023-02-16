@@ -7,9 +7,9 @@ namespace TaikoSharp.Models
 {
     public interface ITaikoL1Client
     {
-        Task<long> GetChainIdAsync();
+        Task<string> GetChainIdAsync();
         Task<bool> GetSyncingStatusAsync();
-        Task<long> GetLatestBlockNumberAsync();
+        Task<string> GetLatestBlockNumberAsync();
         Task<BlockWithTransactionDetails> GetBlockByNumberWithTransactionDetailsAsync(string blockNumber);
         Task<BlockWithoutTransactionDetails> GetBlockByNumberWithoutTransactionDetailsAsync(string blockNumber);
     }

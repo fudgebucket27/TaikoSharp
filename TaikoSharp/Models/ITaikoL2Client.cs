@@ -7,8 +7,8 @@ namespace TaikoSharp.Models
 {
     public interface ITaikoL2Client
     {
-        Task<long> GetChainIdAsync();
+        Task<string> GetChainIdAsync();
         Task<bool> GetSyncingStatusAsync();
-        Task<long> GetLatestBlockNumberAsync();
+        Task<string> GetLatestBlockNumberAsync();
     }
 }
