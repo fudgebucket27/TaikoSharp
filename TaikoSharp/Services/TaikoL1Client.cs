@@ -19,6 +19,22 @@ namespace TaikoSharp.Services
             RpcClient = new RpcClient(new Uri(rpcURL));
         }
 
+        public async Task<BlockWithoutTransactionDetails> GetBlockByHashWithoutTransactionDetailsAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash, false };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByHash", parameters);
+            JObject rpcResponse = await RpcClient.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithoutTransactionDetails>();
+        }
+
+        public async Task<BlockWithTransactionDetails> GetBlockByHashWithTransactionDetailsAsync(string blockHash)
+        {
+            object[] parameters = new object[] { blockHash, true };
+            RpcRequest rpcRequest = new RpcRequest(0, "eth_getBlockByHash", parameters);
+            JObject rpcResponse = await RpcClient.SendRequestAsync<JObject>(rpcRequest);
+            return rpcResponse.ToObject<BlockWithTransactionDetails>();
+        }
+
         public async Task<BlockWithoutTransactionDetails> GetBlockByNumberWithoutTransactionDetailsAsync(string blockNumber)
         {
             object[] parameters = new object[] { blockNumber, false };
